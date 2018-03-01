@@ -16,8 +16,8 @@ Cześć I.
         funkcjonalności:
         v1. Pobierz listę wszystkich pokoi.
         v2. Pobierz listę wszystkich dostępnych pokoi.
-        3. Rezerwuj pokój (podaj nr pokoju i jeśli jest dostępny to go zarezerwuj).
-        4. Zwolnij pokój (podaj nr pokoju i jeśli jest zajęty to go zwolnij).
+        v3. Rezerwuj pokój (podaj nr pokoju i jeśli jest dostępny to go zarezerwuj).
+        v4. Zwolnij pokój (podaj nr pokoju i jeśli jest zajęty to go zwolnij).
         8. W klasie main utwórz proste menu do obsługi hotelu, przykłady implementacji (prosta pętla
         do…while + switch):
         1. https://stackoverflow.com/a/13536215/5877109
@@ -38,6 +38,11 @@ public class App
     {
         UserService userService = new UserService();
         System.out.println(userService.getListOfAllRooms());
+        System.out.println(userService.getListOfIsAvailableRooms());
+        userService.bookRoom(2);
+        System.out.println(userService.getListOfIsAvailableRooms());
+        System.out.println(userService.getListOfAllRooms());
+        userService.freeTheRoom(2);
         System.out.println(userService.getListOfIsAvailableRooms());
     }
 }
