@@ -20,16 +20,24 @@ public class UserService {
         }
         return listOfAvailableRooms;
     }
-    public Room bookRoom(int roomNumber){
-        if (hotel.roomsList.get(roomNumber - 1).isAvailable()){
-            hotel.roomsList.get(roomNumber - 1).setAvailable(false);
+    public boolean bookRoom(int roomNumber){
+        if (selectRoomByRoomNumber(roomNumber).isAvailable()){
+            selectRoomByRoomNumber(roomNumber).setAvailable(false);
         }
-        return hotel.roomsList.get(roomNumber - 1);
+        return true;
     }
-    public Room freeTheRoom(int roomNumber){
-        if (!(hotel.roomsList.get(roomNumber - 1).isAvailable())){
-            hotel.roomsList.get(roomNumber - 1).setAvailable(true);
+    public boolean checkOut(int roomNumber){
+        if (!(selectRoomByRoomNumber(roomNumber).isAvailable())){
+            selectRoomByRoomNumber(roomNumber).setAvailable(true);
         }
-        return hotel.roomsList.get(roomNumber - 1);
+        return true;
+    }
+    private Room selectRoomByRoomNumber(int roomNumber){
+        for (Room room : getListOfIsAvailableRooms()){
+            if (room.getRoomNumber() == roomNumber){
+                return room;
+            }
+        }
+        return null;
     }
 }

@@ -36,13 +36,6 @@ public class App
 {
     public static void main( String[] args )
     {
-        UserService userService = new UserService();
-        System.out.println(userService.getListOfAllRooms());
-        System.out.println(userService.getListOfIsAvailableRooms());
-        userService.bookRoom(2);
-        System.out.println(userService.getListOfIsAvailableRooms());
-        System.out.println(userService.getListOfAllRooms());
-        userService.freeTheRoom(2);
-        System.out.println(userService.getListOfIsAvailableRooms());
+
     }
 }
