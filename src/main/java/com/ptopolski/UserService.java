@@ -23,17 +23,23 @@ public class UserService {
     public boolean bookRoom(int roomNumber){
         if (selectRoomByRoomNumber(roomNumber).isAvailable()){
             selectRoomByRoomNumber(roomNumber).setAvailable(false);
+            return true;
         }
-        return true;
+        else {
+            return false;
+        }
     }
     public boolean checkOut(int roomNumber){
-        if (!(selectRoomByRoomNumber(roomNumber).isAvailable())){
+        if (!selectRoomByRoomNumber(roomNumber).isAvailable()){
             selectRoomByRoomNumber(roomNumber).setAvailable(true);
+            return true;
         }
-        return true;
+        else {
+            return false;
+        }
     }
     private Room selectRoomByRoomNumber(int roomNumber){
-        for (Room room : getListOfIsAvailableRooms()){
+        for (Room room : getListOfAllRooms()){
             if (room.getRoomNumber() == roomNumber){
                 return room;
             }
