@@ -50,6 +50,10 @@ public class UserServiceTest {
     @Test
     public void whenCheckOutThenCheckOut(){
         boolean result = userService.checkOut(3);
-        assertThat(result).isEqualTo(true);
+        assertThat(!result).isEqualTo(true);
+    }
+    @Test
+    public void whenAvailableRoomsThenShowAlert(){
+        assertThat(userService.getAvailableRoom(12)).isEqualTo(!userService.getListOfIsAvailableRooms().get(12).isAvailable());
     }
 }

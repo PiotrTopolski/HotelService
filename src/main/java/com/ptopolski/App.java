@@ -32,18 +32,22 @@ public class App {
                 case '3': {
                     System.out.print("-----  Podaj nr. wybranego pokoju:  ");
                     roomNumber = scanner.nextInt();
-                    uService.bookRoom(roomNumber);
-                    if (uService.bookRoom(roomNumber)) {
+                    if (uService.getAvailableRoom(roomNumber)) {
                         System.out.println("-----  Ten pokuj jest zajęty!  -----");
+                    }
+                    else {
+                        uService.bookRoom(roomNumber);
                     }
                     break;
                 }
                 case '4': {
                     System.out.print("-----  Podaj nr. pokoju:  ");
                     roomNumber = scanner.nextInt();
-                    uService.checkOut(roomNumber);
-                    if (uService.checkOut(roomNumber)) {
+                    if (!uService.getAvailableRoom(roomNumber)) {
                         System.out.println("-----  To nie jest twój pokuj!  -----");
+                    }
+                    else {
+                        uService.checkOut(roomNumber);
                     }
                     break;
                 }
@@ -53,7 +57,6 @@ public class App {
                 }
                 default: {
                     System.out.println("-----  NIE MA TAKIEJ OPCJI  -----");
-                    System.exit(0);
                     break;
                 }
             }

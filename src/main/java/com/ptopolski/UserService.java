@@ -46,4 +46,13 @@ public class UserService {
         }
         return null;
     }
+
+    public boolean getAvailableRoom(int roomNumber) {
+        if (!selectRoomByRoomNumber(roomNumber).isAvailable()){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }
