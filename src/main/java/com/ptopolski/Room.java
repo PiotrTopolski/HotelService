@@ -1,16 +1,21 @@
 package com.ptopolski;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Room {
     private int roomNumber;
     private int numberOfBedRoom;
     private boolean hasBathroom;
     private boolean isAvailable;
+    private List<Guest> guestList;
 
-    Room(int roomNumber, int numberOfBedRoom, boolean hasBathroom, boolean isAvailable) {
+    Room(int roomNumber, int numberOfBedRoom, boolean hasBathroom, boolean isAvailable, List<Guest> guestList) {
         this.roomNumber = roomNumber;
         this.numberOfBedRoom = numberOfBedRoom;
         this.hasBathroom = hasBathroom;
         this.isAvailable = isAvailable;
+        this.guestList = new ArrayList<>();
     }
 
     public int getRoomNumber() {
@@ -45,6 +50,14 @@ public class Room {
         isAvailable = available;
     }
 
+    public List<Guest> getGuestList() {
+        return guestList;
+    }
+
+    public void setGuestList(List<Guest> guestList) {
+        this.guestList = guestList;
+    }
+
     @Override
     public String toString() {
         return "Room  {" +
@@ -52,6 +65,7 @@ public class Room {
                 ",  Number Of Bed Room = " + numberOfBedRoom +
                 ",  Has Bathroom = " + hasBathroom +
                 ",  Is Available = " + isAvailable +
+                ",  Guest List = " + guestList +
                 '}'+"\n";
     }
 }

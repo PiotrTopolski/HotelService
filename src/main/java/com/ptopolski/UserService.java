@@ -2,9 +2,11 @@ package com.ptopolski;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class UserService {
 
+    private Scanner scanner = new Scanner(System.in);
     private Hotel hotel = new Hotel();
 
     public List<Room> getListOfAllRooms() {
@@ -20,7 +22,16 @@ public class UserService {
         }
         return listOfAvailableRooms;
     }
-    public boolean bookRoom(int roomNumber){
+    public boolean bookRoom(int roomNumber, int numberOfGuest){
+        List<Guest> guestList = new ArrayList<>();
+        for (int i = 0; i < numberOfGuest; i++){
+            Guest guest = new Guest();
+            guest.setFirstName(scanner.nextLine());
+            guest.setSurname(scanner.nextLine());
+            guest.setBirthDate(scanner.nextLine());
+            guestList.add(guest);
+        }
+        selectRoomByRoomNumber(roomNumber).setGuestList(guestList);
         if (selectRoomByRoomNumber(roomNumber).isAvailable()){
             selectRoomByRoomNumber(roomNumber).setAvailable(false);
             return true;
@@ -38,15 +49,6 @@ public class UserService {
             return false;
         }
     }
-    private Room selectRoomByRoomNumber(int roomNumber){
-        for (Room room : getListOfAllRooms()){
-            if (room.getRoomNumber() == roomNumber){
-                return room;
-            }
-        }
-        return null;
-    }
-
     public boolean getAvailableRoom(int roomNumber) {
         if (!selectRoomByRoomNumber(roomNumber).isAvailable()){
             return true;
@@ -54,5 +56,13 @@ public class UserService {
         else {
             return false;
         }
+    }
+    private Room selectRoomByRoomNumber(int roomNumber){
+        for (Room room : getListOfAllRooms()){
+            if (room.getRoomNumber() == roomNumber){
+                return room;
+            }
+        }
+        return null;
     }
 }

@@ -32,17 +32,17 @@ public class UserServiceTest {
     }
     @Test
     public void whenBookRoomThenBookRoom(){
-        boolean result = userService.bookRoom(3);
+        boolean result = userService.bookRoom(3,1);
         assertThat(result).isEqualTo(true);
     }
     @Test
     public void whenBookRoomThenRoomGetRoomNumberIsAvailableReturnFalse(){
-        userService.bookRoom(1);
+        userService.bookRoom(1,1);
         assertThat(userService.getListOfAllRooms().get(0).isAvailable()).isEqualTo(false);
     }
     @Test
     public void whenBookRoomThenListOfAllRoomsMinusBookRoomIsEqualsListOfAvailableRoom(){
-        userService.bookRoom(1);
+        userService.bookRoom(1,1);
         List<Room> testRoomList = userService.getListOfAllRooms();
         testRoomList.remove(0);
         assertThat(testRoomList).isEqualTo(userService.getListOfIsAvailableRooms());
